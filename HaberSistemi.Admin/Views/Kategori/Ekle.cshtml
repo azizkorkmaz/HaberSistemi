@@ -1,0 +1,44 @@
+﻿@model HaberSistemi.Core.Dto.KategoriDTO
+@{
+    ViewBag.Title = "Kategori Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Content/js/Global.js"></script>
+<div class="container-fluid">
+    <!-- Basic form -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <header class="panel-heading">@ViewBag.Title</header>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Üst Kategori</label>
+                            @Html.DropDownListFor( x => x.ParentID, new SelectList(ViewBag.Kategori, "Id", "KategoriAdi"),
+                           "Seçiniz", new { @class = "form-control", id = "ParentID" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kategori Adı</label>
+                            @Html.TextBoxFor(x => x.KategoriAdi, new { @class = "form-control", id = "kategoriAdi", placholder = "Kategori Adı" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Kategori Url</label>
+                            @Html.TextBoxFor(x => x.URL, new { @class = "form-control", id = "kategoriUrl", placholder = "Kategori URL" })
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked id="kategoriAktifMi"> Aktif Mi?
+                            </label>
+                        </div>
+                        <a href="#" class="btn btn-default" onclick="KategoriEkle()">Kaydet</a>
+                        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Basic form -->
+    
+</div>

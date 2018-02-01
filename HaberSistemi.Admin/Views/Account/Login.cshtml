@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Saltkin &dash; Responsive Admin &amp; Dashboard UI Template</title>
+
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,400italic%7cMontserrat:400,700" rel="stylesheet" type="text/css">
+    <!-- Icons -->
+    <link href="~/Content/css/typicons.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template -->
+    <link href="~/Content/css/main.min.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- iCheck - Custom radio/check input -->
+    <link href="~/Content/css/icheck/minimal.css" rel="stylesheet">
+    <!-- Footable plugin -->
+    <link href="~/Content/css/plugins.min.css" rel="stylesheet">
+
+
+</head>
+<body class="login-page">
+
+    
+    <!-- Page container -->
+
+    <div class="container">
+
+        <p class="text-center">
+            <img src="~/Content/img/logo.png" alt="Logo"><br><br>
+            MVC Haber Portalı
+        </p>
+        <div style="text-align:center">
+            <label style="color:red">@ViewBag.Mesaj</label>
+        </div>
+        <div class="login-buttons">
+            <button class="btn btn-login" data-toggle="modal" data-target="#loginModal">Giriş Yap</button>
+        </div>
+    </div>
+    <!-- /Page container -->
+    <!-- Login modal -->
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Giriş Yapınız</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email" name="Email" autofocus required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Şifre" name="Sifre" required>
+                            </div>
+                            <label class="checkbox">
+                                <input type="checkbox" value="remember-me"> Beni Hatırla
+                            </label>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- Sign up modal -->
+    <!-- SCRIPTS -->
+    <script src="~/Content/js/plugins/jquery.min.js"></script>
+    <script src="~/Content/js/plugins/modernizr.min.js"></script>
+    <!-- Bootstrap core -->
+    <script src="~/Content/js/plugins/bootstrap.min.js"></script>
+    <!-- Custom scrollbar -->
+    <script src="~/Content/js/plugins/enscroll.min.js"></script>
+    <!-- Dynamic tables -->
+    <script src="~/Content/js/plugins/footable.min.js"></script>
+    <!-- Knob / Donut charts -->
+    <script src="~/Content/js/plugins/knob.min.js"></script>
+    <!-- Rickshaw graphs & charts -->
+    <script src="~/Content/js/plugins/sparkline.min.js"></script>
+    <script src="~/Content/js/plugins/rickshaw/d3.v3.js"></script>
+    <script src="~/Content/js/plugins/rickshaw/rickshaw.min.js"></script>
+    <!-- Flot -->
+    <script src="~/Content/js/plugins/flot.min.js"></script>
+    <!-- Custom checkboxes and radio input -->
+    <script src="~/Content/js/plugins/icheck.min.js"></script>
+    <!-- Page specific -->
+    <script src="~/Content/js/page-dashboard.js"></script>
+    <!-- Site -->
+    <script src="~/Content/js/main.js"></script>
+</body>
+</html>
+

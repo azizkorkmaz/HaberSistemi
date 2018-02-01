@@ -1,0 +1,99 @@
+﻿
+@model HaberSistemi.Core.Dto.HaberEtiketModelDTO
+@{
+    ViewBag.Title = "Haber Düzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<style>
+    .bootstrap-tagsinput {
+        width: 100%;
+    }
+</style>
+
+
+<div class="container-fluid">
+    <!-- Basic form -->
+    @using (Html.BeginForm("Duzenle", "Haber", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <header class="panel-heading">@ViewBag.Title</header>
+                    <div class="panel-body">
+                        @Html.HiddenFor(x => x.Haber.Id)
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="Kategori">Kategori</label>
+                                @Html.DropDownListFor(x => x.Haber.KategoriID, new SelectList(ViewBag.Kategori, "Id", "KategoriAdi"),
+                           "Seçiniz", new { @class = "form-control", id = "KategoriID" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Haber Başlık</label>
+                                @Html.TextBoxFor(x => x.Haber.Baslik, new { @class = "form-control", id = "Baslik", placholder = "Haber Başlık" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Kısa Açıklama</label>
+                                @Html.TextArea("Haber.KisaAciklama")
+                                <script type="text/javascript">
+                                    var editor = CKEDITOR.instances['Haber.KisaAciklama'];
+                                    if (editor) {
+                                        editor.destroy(true);
+                                    }
+                                    CKEDITOR.replace('Haber.KisaAciklama', { enterMode: CKEDITOR.ENTER_BR, });
+                                </script>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Açıklama</label>
+                                @Html.TextArea("Haber.Aciklama")
+                                <script type="text/javascript">
+                                    var editor = CKEDITOR.instances['Haber.Aciklama'];
+                                    if (editor) {
+                                        editor.destroy(true);
+                                    }
+                                    CKEDITOR.replace('Haber.Aciklama', { enterMode: CKEDITOR.ENTER_BR, });
+                                </script>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Haber Etiket(ler)</label>
+                                @*<input type="text" name="Etiket" data-role="tagsinput" class="form-control" />*@
+                                @Html.TextBoxFor(x => x.EtiketAdi, new { @class = "frorm-control", data_rol = "tagsinput" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Vitrin Resmi(ler)</label>
+                                <input type="file" name="vitrinResmi" accept="image/*" class="form-control" />
+                                <img src="@Model.Haber.Resim" style="width:100px" /> ekli resim
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Detay Resmi</label>
+                                <input type="file" name="DetayResim" accept="image/*" class="form-control" multiple />
+                                @if (Model.Haber.Resimler != null && Model.Haber.Resimler.Any())
+                                {
+                                    foreach (var item in Model.Haber.Resimler.Where(x => x.HaberID == Model.Haber.Id))
+                                    {
+                                        <img src="@item.ResimUrl" width:"100px" />
+                                        <label><a href="@Url.Action("ResimSil","Haber", new { ID=item.Id})">Sil</a></label>
+                                    }
+                                }
+
+                            </div>
+                            <div class="form-group">
+
+                                <label style="width:20px; height:20px">
+                                    @Html.CheckBoxFor(x => x.Haber.AktifMi, new { @class = "form-control", id = "AktifMi" })
+                                </label>
+                                <label for="AktifMi">Aktif Mi?</label>
+                            </div>
+                            <button type="submit" class="btn btn-default">Kaydet</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- /Basic form -->
+
+</div>

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,400italic%7cMontserrat:400,700" rel="stylesheet" type="text/css">
+    <!-- Icons -->
+    <link href="~/Content/css/typicons.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- iCheck - Custom radio/check input -->
+    <link href="~/Content/css/icheck/minimal.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Footable plugin -->
+    <link href="~/Content/css/plugins.min.css" rel="stylesheet">
+    <!-- Template -->
+    <link href="~/Content/css/main.css" rel="stylesheet">
+    <link href="~/Content/css/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-tagsinput.css" rel="stylesheet" />
+    <script src="~/Content/js/plugins/jquery.min.js"></script>
+    <link href="~/Content/css/sweetalert.css" rel="stylesheet" />
+
+
+</head>
+<body>
+
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Sidebar -->
+        @Html.Partial("_Sidebar")
+        <!-- /Sidebar -->
+        <!-- Content -->
+        <div id="content">
+            <!-- Header -->
+            @Html.Partial("_Header")
+            <!-- /Header -->
+            <!-- Content start -->
+            @RenderBody()
+        </div>
+        <!-- /Content -->
+    </div>
+    <!-- /Page container -->
+    <!-- PLUGINS ALL -->
+   
+    <script src="~/Content/js/plugins/modernizr.min.js"></script>
+    <!-- Bootstrap core -->
+    <script src="~/Content/js/plugins/bootstrap.min.js"></script>
+    <!-- Custom scrollbar -->
+    <script src="~/Content/js/plugins/enscroll.min.js"></script>
+    <!-- Dynamic tables -->
+    <script src="~/Content/js/plugins/footable.min.js"></script>
+    <!-- Knob / Donut charts -->
+    <script src="~/Content/js/plugins/knob.min.js"></script>
+    <!-- Rickshaw graphs & charts -->
+    <script src="~/Content/js/plugins/sparkline.min.js"></script>
+    <script src="~/Content/js/plugins/rickshaw/d3.v3.js"></script>
+    <script src="~/Content/js/plugins/rickshaw/rickshaw.min.js"></script>
+    <!-- Flot -->
+    <script src="~/Content/js/plugins/flot.min.js"></script>
+    <!-- Custom checkboxes and radio input -->
+    <script src="~/Content/js/plugins/icheck.min.js"></script>
+    
+    <!-- Site -->
+    <script src="~/Content/js/main.js"></script>
+    <script src="~/Content/js/Global.js"></script>
+    <script src="~/Content/js/bootbox.min.js"></script>
+    <script src="~/Content/js/notify.js"></script>
+    <script src="~/Content/js/bootstrap-tagsinput.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/js/sweetalert.min.js"></script>
+
+</body>
+</html>

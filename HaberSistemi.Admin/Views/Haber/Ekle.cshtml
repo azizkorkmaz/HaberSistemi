@@ -1,0 +1,88 @@
+﻿
+@model HaberSistemi.Core.Dto.HaberDTO
+@{
+    ViewBag.Title = "Haber Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<style>
+        .bootstrap-tagsinput{
+            width:100%
+        }
+</style>
+<div class="container-fluid">
+    <!-- Basic form -->
+    @using (Html.BeginForm("Ekle", "Haber", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <header class="panel-heading">@ViewBag.Title</header>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="Kategori">Kategori</label>
+                            @Html.DropDownListFor(x => x.KategoriID, new SelectList(ViewBag.Kategori, "Id", "KategoriAdi"),
+                           "Seçiniz", new { @class = "form-control", id = "KategoriID" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Haber Başlık</label>
+                            @Html.TextBoxFor(x=>x.Baslik,new { @class="form-control",id="Baslik", placholder="Haber Başlık"})
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Kısa Açıklama</label>
+                            @Html.TextArea("KisaAciklama")
+                            <script type="text/javascript">
+                                var editor = CKEDITOR.instances['KisaAciklama'];
+                                if (editor) {
+                                    editor.destroy(true);
+                                }
+                                CKEDITOR.replace('KisaAciklama', { enterMode: CKEDITOR.ENTER_BR, });
+                            </script>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Açıklama</label>
+                            @Html.TextArea("Aciklama")
+                            <script type="text/javascript">
+                                var editor = CKEDITOR.instances['Aciklama'];
+                                if (editor) {
+                                    editor.destroy(true);
+                                }
+                                CKEDITOR.replace('Aciklama', { enterMode: CKEDITOR.ENTER_BR, });
+                            </script>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Haber Etiket(ler)</label>
+                            <input type="text" name="Etiket" data-role="tagsinput" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Vitrin Resmi</label>
+                            <input type="file" name="vitrinResmi" accept="image/*" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Detay Resmi(ler)</label>
+                            <input type="file" name="DetayResim" accept="image/*" class="form-control" multiple />
+                        </div>
+                        <div class="form-group">
+                            
+                            <label style="width:20px; height:20px">
+                                @Html.CheckBoxFor(x => x.AktifMi, new { @class = "form-control", id = "AktifMi"}) 
+                            </label>
+                            <label for="AktifMi">Aktif Mi?</label>
+                        </div>
+                        <button type="submit" class="btn btn-default">Kaydet</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <!-- /Basic form -->
+
+</div>
+
+
+
